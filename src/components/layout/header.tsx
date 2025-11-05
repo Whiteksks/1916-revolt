@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { MenuIcon, HelpCircleIcon } from 'lucide-react'
+import { MenuIcon, TreePine } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import {
@@ -11,6 +11,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@/components/ui/popover'
 import Logo from './logo'
 import { AnimatedThemeToggler } from '../ui/animated-theme-toggler'
 import { useTheme } from '../theme/theme-provider'
@@ -27,6 +32,7 @@ const navigationData = [
 const Header = () => {
   const { setTheme } = useTheme()
   const [isSnowMode, setIsSnowMode] = useState(false)
+  const [openPopover, setOpenPopover] = useState(false)
 
   useEffect(() => {
     const savedMode = localStorage.getItem('snowMode') === 'true'
@@ -41,9 +47,7 @@ const Header = () => {
     const newValue = !isSnowMode
     setIsSnowMode(newValue)
     localStorage.setItem('snowMode', String(newValue))
-
     window.dispatchEvent(new Event('snowModeChanged'))
-
     if (newValue) {
       document.body.classList.add('snow-active')
       setTheme('dark')
@@ -51,7 +55,6 @@ const Header = () => {
       document.body.classList.remove('snow-active')
     }
   }
-
 
   return (
     <header
@@ -81,52 +84,65 @@ const Header = () => {
 
         <div className="flex items-center gap-4">
           {!isSnowMode && <AnimatedThemeToggler />}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleSnowMode}
-            title="Новогоднее настроение 🎄"
-            className={cn(
-              'transition-transform hover:rotate-12',
-              isSnowMode && 'text-sky-400 animate-pulse'
-            )}
-          >
-            <HelpCircleIcon />
-          </Button>
 
-         <DropdownMenu>
-          <DropdownMenuTrigger
-            className="md:hidden backdrop-blur-2xl bg-background/40 border border-white/10 rounded-xl shadow-lg"
-            asChild
-          >
-            <Button variant="outline" size="icon">
-              <MenuIcon />
-              <span className="sr-only">Menu</span>
-            </Button>
-          </DropdownMenuTrigger>
+          <Popover open={openPopover} onOpenChange={setOpenPopover}>
+            <PopoverTrigger asChild>
+              <button
+                onMouseEnter={() => setOpenPopover(true)}
+                onMouseLeave={() => setOpenPopover(false)}
+                onClick={handleSnowMode}
+                className={cn(
+                  'transition-transform hover:rotate-12',
+                  isSnowMode && 'text-sky-400 animate-pulse'
+                )}
+              >
+                <TreePine className="w-6 h-6" />
+              </button>
+            </PopoverTrigger>
 
-          <DropdownMenuContent
-            className={cn(
-              "w-56 mt-2 rounded-2xl border border-white/10 backdrop-blur-2xl",
-              "bg-background/60 shadow-lg",
-              "transition-all duration-300"
-            )}
-            align="end"
-          >
-            <DropdownMenuGroup>
-              {navigationData.map((item, index) => (
-                <DropdownMenuItem
-                  key={index}
-                  asChild
-                  className="hover:bg-white/10 transition-colors rounded-lg"
-                >
-                  <Link to={item.href}>{item.title}</Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            <PopoverContent
+              side="bottom"
+              align="center"
+              className={cn(
+                'w-48 text-center text-sm rounded-2xl border border-white/10 backdrop-blur-2xl',
+                'bg-background/60 shadow-lg p-3 select-none pointer-events-none'
+              )}
+            >
+              <p>I'm too lazy to decorate the house, so I decorated the website.</p>
+            </PopoverContent>
+          </Popover>
 
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className="md:hidden backdrop-blur-2xl bg-background/40 border border-white/10 rounded-xl shadow-lg"
+              asChild
+            >
+              <Button variant="outline" size="icon">
+                <MenuIcon />
+                <span className="sr-only">Menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent
+              className={cn(
+                'w-56 mt-2 rounded-2xl border border-white/10 backdrop-blur-2xl',
+                'bg-background/60 shadow-lg transition-all duration-300'
+              )}
+              align="end"
+            >
+              <DropdownMenuGroup>
+                {navigationData.map((item, index) => (
+                  <DropdownMenuItem
+                    key={index}
+                    asChild
+                    className="hover:bg-white/10 transition-colors rounded-lg"
+                  >
+                    <Link to={item.href}>{item.title}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
