@@ -91,7 +91,7 @@ export function MobileTimeline({ events }: MobileTimelineProps) {
          
             className="absolute top-0 left-0 w-full"
           >
-            <Card className="overflow-hidden rounded-2xl shadow-md">
+            <Card className="overflow-hidden rounded-2xl backdrop-blur-md bg-white/10 border border-white/20">
               <img
                 src={current.image}
                 alt={current.title}

@@ -75,7 +75,7 @@ export default function SourcesPage() {
                   {references.map((item, i) => {
                     const parts = item.split(/(https?:\/\/[^\s]+)/g)
                     return (
-                      <li key={i}>
+                      <li key={i} className="wrap-break-word"> {/* <-- ДОБАВЛЕНО: className="break-words" */}
                         {parts.map((part, index) =>
                           /^https?:\/\//.test(part) ? (
                             <a
