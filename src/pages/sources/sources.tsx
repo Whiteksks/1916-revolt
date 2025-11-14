@@ -10,28 +10,31 @@ import { cn } from '@/lib/utils'
 export default function SourcesPage() {
   const sources = [
     {
+      title: '“The Time of Ordeal”: The 1916 Revolt in Central Asia — IIAS Newsletter',
+      description: 'Article by Zifa Auezova on the 1916 Central Asian revolt, exploring its causes, key events, and legacy across Turkestan and Kazakhstan.',
+      link: 'https://www.iias.asia/the-newsletter/article/time-ordeal-story-1916-revolt-central-asia',
+    },
+    {
       title: 'Central Asian Revolt of 1916 — Wikipedia',
-      description: 'Overview of causes, chronology, and consequences of the 1916 uprising across Turkestan and the Kazakh steppe.',
+      description: 'Comprehensive overview of the 1916 anti-Russian uprising in Central Asia: mobilization decree, scale of rebellion, suppression, and aftermath.',
       link: 'https://en.wikipedia.org/wiki/Central_Asian_revolt_of_1916',
     },
     {
-      title: 'National Digital History of Kazakhstan (E-history)',
-      description: 'Articles and materials on Kazakhstan’s history, including the 1916 uprising. English section available.',
-      link: 'https://e-history.kz/en/',
+      title: 'E-History.kz — Portal “History of Kazakhstan”',
+      description: 'English-language site of the national digital history of Kazakhstan, including a section on the 1916 uprising and its significance.',
+      link: 'https://e-history.kz/en/history-of-kazakhstan/show/9602',
     },
-  ]
+  ];
 
   const references = [
-    'Edward Dennis Sokol — The Revolt of 1916 in Russian Central Asia. Johns Hopkins University Press, 1954/1966.',
-    'Daniel R. Brower — Turkestan and the Fate of the Russian Empire. Routledge, 2003.',
-    'Martha Brill Olcott — The Kazakhs (3rd ed.). Hoover Institution Press, 2015.',
-    'Adeeb Khalid — The Politics of Muslim Cultural Reform: Jadidism in Central Asia. University of California Press, 1998.',
-    'Jeff Sahadeo — Russian Colonial Society in Tashkent, 1865–1923. Indiana University Press, 2007.',
-    'Alexander Morrison — The Russian Conquest of Central Asia: A Study in Imperial Expansion, 1814–1914. Cambridge University Press, 2020.',
-    'Zharmukhamed Zardykhan — “National Identity and Ethnic Mobilization in Kazakhstan and Kyrgyzstan: The Uprising of 1916.” Central Asian Survey, 2004.',
-  ]
+    "Abduqahorov, A. (2025, June 29). RESISTANCE TO COLONIAL POLICY: THE 1916 TURKESTAN UPRISING BASED ON NEW RESEARCH. Journal of Applied Science and Social Science. https://inlibrary.uz/index.php/jasss/article/view/114192",
+    "The revolt of 1916 in Russian Central Asia. (2016). Google Books. https://books.google.kz/books?id=LrhQDAAAQBAJ",
+    "Jumayev, A. H. (2025, October 28). THE BEGINNING OF THE 1916 UPRISING IN TURKESTAN. https://www.wosjournals.com/index.php/shokh/article/view/5778",
+    "Saktaganova, E., Çetin, N., Oshangaliyev, K., Aitmagambetov, D., & Sailaubai, Y. (2025). Political and social transformation of Kazakhstan during the years of revolutions. Nationalities Papers, 1–20. https://doi.org/10.1017/nps.2025.10103",
+    "Turkestan and the fate of the Russian Empire. (2003). Google Books. https://books.google.kz/books?id=xrH_YPr4gOsC&pg=PA5",
+  ];
 
- return (
+  return (
     <div className="relative p-4 h-screen">
       <div className="fixed inset-0 -z-10">
         <StarsBackgroundDemo />
@@ -40,12 +43,12 @@ export default function SourcesPage() {
       <div className="relative z-10">
         <Header />
 
-        <main className="mx-auto max-w-5xl sm:px-6 lg:px-8">
+        <main className="mx-auto max-w-5xl mt-4 sm:px-6 lg:px-8">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-3xl font-bold tracking-tight mb-6"
+            className="font-bold tracking-tight mb-6 text-2xl"
           >
             Sources and References
           </motion.h1>
@@ -69,9 +72,28 @@ export default function SourcesPage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2">
-                  {references.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
+                  {references.map((item, i) => {
+                    const parts = item.split(/(https?:\/\/[^\s]+)/g)
+                    return (
+                      <li key={i}>
+                        {parts.map((part, index) =>
+                          /^https?:\/\//.test(part) ? (
+                            <a
+                              key={index}
+                              href={part}
+                              className="text-primary hover:underline"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {part}
+                            </a>
+                          ) : (
+                            <span key={index}>{part}</span>
+                          )
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               </CardContent>
             </Card>
@@ -101,9 +123,7 @@ export default function SourcesPage() {
                     >
                       {source.title}
                     </a>
-                    <p className="text-muted-foreground text-sm">
-                      {source.description}
-                    </p>
+                    <p className="text-muted-foreground">{source.description}</p>
                   </div>
                 ))}
               </CardContent>

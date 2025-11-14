@@ -21,10 +21,10 @@ export default function AboutUs() {
     },
     {
       name: 'Atymtay Berdikhan',
-      role: 'Content Editor',
+      role: 'Materials Contributor',
       image: 'https://github.com/evilrabbit.png',
       description:
-        'Collects materials, verifies historical sources, and edits written content for accuracy.',
+        'Provides historical materials.',
       contacts: {
         github: '',
         email: '251316@astanait.edu.kz',
