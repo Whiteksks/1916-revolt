@@ -64,7 +64,6 @@ export default function Content() {
         gsap.set(card, {
           opacity: 0,
           scale: 0.9,
-          filter: "blur(20px)",
           y: 100,
         });
 
@@ -72,8 +71,7 @@ export default function Content() {
           opacity: 1,
           scale: 1,
           y: 0,
-          filter: "blur(0px)",
-          duration: 1.4,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: card,
@@ -106,7 +104,7 @@ export default function Content() {
           ref={(el) => {
             if (el) cardsRef.current[i] = el;
           }}
-          className="w-[92%] sm:w-4/5 md:w-3/5 lg:w-1/2"
+          className="w-full sm:w-4/5 md:w-3/5 lg:w-1/2"
         >
           <Card className="bg-card/70 backdrop-blur-xl shadow-2xl border border-border/40 rounded-3xl overflow-hidden transform-gpu">
             <CardHeader className="text-center space-y-3 px-8 py-6">
