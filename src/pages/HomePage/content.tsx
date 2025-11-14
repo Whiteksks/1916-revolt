@@ -19,39 +19,40 @@ const sections = [
   {
     title: "The 1916 Uprising in Kazakhstan",
     description:
-      "One of the largest national liberation movements in the early 20th century against the colonial policy of the Russian Empire.",
+      "One of the most significant national liberation movements of the early 20th century against the colonial policies of the Russian Empire.",
     content:
-      "The uprising of 1916 was a mass revolt of the Kazakh people against forced conscription into rear-line labor during World War I. The Tsarist decree of June 25, 1916, which ordered the mobilization of non-Russian men aged 19–43, sparked widespread outrage. Combined with decades of land seizures, taxes, and the erosion of local autonomy, this decree ignited a wave of resistance across the Kazakh steppe.",
+      "The uprising of 1916 was a mass revolt of the Kazakh population against the forced mobilization of non-Russian men for rear-line work during World War I. The decree issued by Tsar Nicholas II on June 25, 1916 required the conscription of Indigenous peoples aged 19–43, who had previously been exempt from military service. This decision provoked widespread outrage. Combined with decades of land seizures, administrative control, rising taxes, and restrictions on traditional nomadic life, the decree became the immediate trigger that ignited large-scale resistance across the Kazakh steppe."
   },
   {
     title: "Causes of the Uprising",
     description:
-      "Social, economic, and political tensions accumulated over decades of colonization.",
+      "Deep social, economic, and political tensions accumulated over decades of colonization.",
     content:
-      "The roots of the revolt lay in the long-standing injustices of the colonial system: confiscation of fertile lands for Russian settlers, heavy taxation, and administrative repression. The Kazakh nomads were increasingly marginalized, losing access to pastures and water sources. The 1916 decree by Tsar Nicholas II became the final catalyst for open rebellion.",
+      "The roots of the revolt lay in long-term colonial policies implemented since the mid-19th century. Large areas of fertile land were confiscated and transferred to Russian and Ukrainian settlers through the Resettlement Administration. Kazakh nomads lost access to key pastures and water sources, leading to economic hardship and the disruption of traditional migration routes. Heavy taxation, corruption among local administrators, and forced sedentarization further deepened dissatisfaction. The decree of June 25, 1916 became the ultimate spark that turned discontent into organized resistance."
   },
   {
     title: "Course of Events",
     description:
-      "Major centers of resistance and the heroic figures who led them.",
+      "Major centers of resistance and key leaders of the 1916 movement.",
     content:
-      "The uprising spread rapidly across the Kazakh steppes, particularly in the regions of Torgai, Semirechye (Jetisu), and Syr-Darya. In Torgai, the revolt was led by Amangeldy Imanov and his spiritual advisor Älihan Bökeikhanov, while in Semirechye, Bekbolat Äshkeev emerged as a prominent leader. The rebels launched attacks on Russian garrisons and administrative centers, seeking to reclaim autonomy and resist forced labor mobilization.",
+      "The uprising rapidly spread across several regions, including Torgai, Semirechye (Jetisu), Akmola, Uralsk, and Syr-Darya. In the Torgai region, the movement was led by Amangeldy Imanov, supported by prominent figures such as Älihan Bökeikhanov and Äubakir Zhanbosynov. His forces managed to form organized detachments and carried out coordinated attacks on Russian garrisons. In Semirechye, Bekbolat Äshkeev led thousands of rebels, while Tokash Bokin agitated among urban and rural workers. Other notable leaders included Keyk Batyr and Üzak Kuldibayev. Rebels targeted administrative posts, disrupted communication lines, and confronted colonial authorities in attempts to restore autonomy and resist mobilization."
   },
   {
     title: "Suppression and Consequences",
     description:
-      "Brutal repression and the tragic aftermath of the uprising.",
+      "Brutal military response and long-term effects on the Kazakh population.",
     content:
-      "The Tsarist regime responded with extreme violence. Tens of thousands of Kazakhs were executed, imprisoned, or forced to flee to China. Entire villages were burned, and traditional structures of governance were destroyed. Despite the defeat, the uprising became a powerful symbol of resistance and national awakening. It laid the groundwork for the later struggle for independence and inspired future generations of Kazakh patriots.",
+      "The Tsarist authorities responded with mass punitive operations. Imperial troops, supported by Cossack units and armed settlers, carried out harsh reprisals. Entire auls (villages) were burned, property was confiscated, and suspected participants were executed without trial. Tens of thousands of Kazakhs were forced to flee to China during the tragic 'Alash köşі', many dying during the crossing of mountain passes. According to various estimates, the total casualties ranged from 100,000 to 200,000 people. Although the uprising was suppressed, it weakened trust in imperial rule and accelerated political mobilization among Kazakhs after the February Revolution of 1917."
   },
   {
     title: "Historical Significance",
     description:
-      "The legacy of the 1916 revolt in Kazakh national memory.",
+      "How the 1916 uprising shaped national memory and identity in Kazakhstan.",
     content:
-      "The 1916 uprising is remembered today as a defining moment in the history of Kazakhstan’s national identity. It exposed the deep injustices of the colonial system and awakened a collective consciousness among the Kazakh people. In independent Kazakhstan, monuments and museums commemorate the bravery and sacrifice of those who fought for freedom.",
-  },
+      "The 1916 uprising is regarded as a key turning point in the national liberation movement of the Kazakh people. It exposed the systemic injustices of colonial administration and strengthened demands for political autonomy, contributing to the formation of the Alash movement in 1917. The revolt is remembered today as a symbol of bravery and collective resistance. Monuments, museums, and research centers commemorate the heroes of 1916, while modern historians emphasize its lasting impact on national consciousness and the future struggle for independence."
+  }
 ];
+
 
 
 export default function Content() {
@@ -90,7 +91,6 @@ export default function Content() {
 
   return (
     <div className="flex flex-col items-center justify-center w-full pt-32 space-y-40 from-background via-muted/10 to-background  overflow-x-hidden">
-      {/* --- Заголовок без анимации --- */}
       <div className="text-center mb-12 px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-primary">
           Let's reconstruct the chronology of events
@@ -100,7 +100,6 @@ export default function Content() {
         </p>
       </div>
 
-      {/* --- Карточки --- */}
       {sections.map((section, i) => (
         <div
           key={i}

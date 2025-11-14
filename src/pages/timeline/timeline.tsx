@@ -89,6 +89,13 @@ export default function TimelinePage() {
   const cardRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
+    events.forEach(event => {
+      const img = new Image()
+      img.src = event.image
+    })
+  }, [events])
+
+  useLayoutEffect(() => {
     if (!cardRef.current) return
 
     const ctx = gsap.context(() => {
